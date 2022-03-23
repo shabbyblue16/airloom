@@ -11,4 +11,7 @@ module.exports = {
       version: 'detect',
     },
   },
+  rules: {
+    'jsx-quotes': 'off',
+  },
 };
