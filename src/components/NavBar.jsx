@@ -14,30 +14,43 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 // import Tooltip from '@mui/material/Tooltip';
 
 function NavBar() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElAlbums, setAnchorElAlbums] = React.useState(null);
 
   const handleUserOpen = (e) => {
-    setAnchorEl(e.currentTarget);
+    setAnchorElUser(e.currentTarget);
   };
 
   const handleUserClose = () => {
-    setAnchorEl(null);
+    setAnchorElUser(null);
+  };
+
+  const handleAlbumsOpen = (e) => {
+    setAnchorElAlbums(e.currentTarget);
+  };
+
+  const handleAlbumsClose = () => {
+    setAnchorElAlbums(null);
   };
 
   return (
     <AppBar position='static'>
-      <Toolbar>
+      <Toolbar
+        sx={{
+          backgroundColor: '#cc5500',
+        }}
+      >
         <Typography
           variant='h4'
           component='div'
-          sx={{ flewGrow: 1 }}
+          sx={{ flexGrow: 1 }}
         >
           Airloom
         </Typography>
         <Typography
           variant='h6'
           component='div'
-          sx={{ flexGrow: 1 }}
+          sx={{ mr: 1 }}
         >
           Albums
         </Typography>
@@ -46,10 +59,28 @@ function NavBar() {
           edge='start'
           color='inherit'
           aria-label='menu'
+          onClick={handleAlbumsOpen}
           sx={{ mr: 2 }}
         >
           <MenuIcon />
         </IconButton>
+        <Menu
+          id='albums-appbar'
+          anchorEl={anchorElAlbums}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          open={Boolean(anchorElAlbums)}
+          onClose={handleAlbumsClose}
+        >
+          <MenuItem onClick={handleAlbumsClose}>New...</MenuItem>
+        </Menu>
         <div>
           <IconButton
             size='large'
@@ -62,8 +93,8 @@ function NavBar() {
             <AccountCircle />
           </IconButton>
           <Menu
-            id='menu-appbar'
-            anchorEl={anchorEl}
+            id='user-appbar'
+            anchorEl={anchorElUser}
             anchorOrigin={{
               vertical: 'top',
               horizontal: 'right',
@@ -73,7 +104,7 @@ function NavBar() {
               vertical: 'top',
               horizontal: 'right',
             }}
-            open={Boolean(anchorEl)}
+            open={Boolean(anchorElUser)}
             onClose={handleUserClose}
           >
             <MenuItem onClick={handleUserClose}>Profile</MenuItem>
