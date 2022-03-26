@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import AppBar from '@mui/material/AppBar';
@@ -15,7 +16,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 // import Button from '@mui/material/Button';
 // import Tooltip from '@mui/material/Tooltip';
 
-function NavBar() {
+function NavBar({ page }) {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [anchorElAlbums, setAnchorElAlbums] = React.useState(null);
 
@@ -48,6 +49,13 @@ function NavBar() {
           sx={{ flexGrow: 1 }}
         >
           Airloom
+        </Typography>
+        <Typography
+          variant='h4'
+          component='div'
+          sx={{ flexGrow: 1 }}
+        >
+          {page}
         </Typography>
         <Typography
           variant='h6'
@@ -116,5 +124,9 @@ function NavBar() {
     </AppBar>
   );
 }
+
+NavBar.propTypes = {
+  page: PropTypes.string,
+};
 
 export default NavBar;
