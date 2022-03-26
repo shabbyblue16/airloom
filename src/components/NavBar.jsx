@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
+
 import AppBar from '@mui/material/AppBar';
 // import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -79,7 +81,7 @@ function NavBar() {
           open={Boolean(anchorElAlbums)}
           onClose={handleAlbumsClose}
         >
-          <MenuItem onClick={handleAlbumsClose}>New...</MenuItem>
+          <MenuItem><Link to='/CreateAlbum' style={{ textDecoration: 'none' }}>New...</Link></MenuItem>
         </Menu>
         <div>
           <IconButton

@@ -13,5 +13,6 @@ module.exports = {
   },
   rules: {
     'jsx-quotes': 'off',
+    'no-unused-vars': 0,
   },
 };
