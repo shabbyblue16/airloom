@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { NavBar } from '../components';
+import postAlbum from '../actions/postAlbum';
 
 function CreateAlbum({ page }) {
   const [nameValue, setNameValue] = React.useState('Name');
@@ -15,6 +16,16 @@ function CreateAlbum({ page }) {
 
   const handleTextChange = (e) => {
     setTextValue(e.target.value);
+  };
+
+  const handleSave = () => {
+    const album = {
+      name: nameValue,
+      story: textValue,
+    };
+    postAlbum(album);
+    setNameValue('');
+    setTextValue('');
   };
 
   return (
@@ -72,6 +83,7 @@ function CreateAlbum({ page }) {
           <Button
             variant='contained'
             component='span'
+            onClick={handleSave}
             // sx={{ backgroundColor: '#cc5500' }}
           >
             Save Album
@@ -81,6 +93,10 @@ function CreateAlbum({ page }) {
     </div>
   );
 }
+
+// const mapDispatchToProps = (dispatch) => ({
+//   handlePostAlbum: (album)
+// })
 
 CreateAlbum.propTypes = {
   page: PropTypes.string,

@@ -15,5 +15,6 @@ module.exports = {
     'jsx-quotes': 'off',
     'no-unused-vars': 0,
     'react/require-default-props': 0,
+    'no-console': 0,
   },
 };
