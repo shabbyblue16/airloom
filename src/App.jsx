@@ -9,7 +9,7 @@ function App() {
       {/* <nav className="navbar">
         <Link to="/login">Login</Link>
       </nav> */}
-      <NavBar page='Home' />
+      {/* <NavBar page='Home' /> */}
       <Landing />
     </div>
   );

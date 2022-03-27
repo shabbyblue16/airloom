@@ -19,7 +19,7 @@ function CreateAlbum({ page }) {
 
   return (
     <div>
-      <NavBar page='Create Album' />
+      {/* <NavBar page='Create Album' /> */}
       <Grid
         container
         spacing={3}

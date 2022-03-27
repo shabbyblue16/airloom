@@ -48,7 +48,7 @@ function NavBar({ page }) {
           component='div'
           sx={{ flexGrow: 1 }}
         >
-          Airloom
+          <Link to='/' style={{ color: 'white', textDecoration: 'none' }}>Airloom</Link>
         </Typography>
         <Typography
           variant='h4'
@@ -87,7 +87,7 @@ function NavBar({ page }) {
             horizontal: 'right',
           }}
           open={Boolean(anchorElAlbums)}
-          onClose={handleAlbumsClose}
+          onClick={handleAlbumsClose}
         >
           <MenuItem><Link to='/create-album' style={{ textDecoration: 'none' }}>New...</Link></MenuItem>
         </Menu>
@@ -115,7 +115,7 @@ function NavBar({ page }) {
               horizontal: 'right',
             }}
             open={Boolean(anchorElUser)}
-            onClose={handleUserClose}
+            onClick={handleUserClose}
           >
             <MenuItem onClick={handleUserClose}>Profile</MenuItem>
           </Menu>
