@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 const express = require('express');
 const { pgClient } = require('./db');
+const router = require('./routes');
 require('dotenv').config();
 
 const app = express();
@@ -15,6 +16,8 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, OPTIONS');
   next();
 });
+
+app.use(router);
 
 pgClient.connect()
   .then(async () => {
