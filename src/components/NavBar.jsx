@@ -89,7 +89,7 @@ function NavBar({ page }) {
           open={Boolean(anchorElAlbums)}
           onClose={handleAlbumsClose}
         >
-          <MenuItem><Link to='/CreateAlbum' style={{ textDecoration: 'none' }}>New...</Link></MenuItem>
+          <MenuItem><Link to='/create-album' style={{ textDecoration: 'none' }}>New...</Link></MenuItem>
         </Menu>
         <div>
           <IconButton
