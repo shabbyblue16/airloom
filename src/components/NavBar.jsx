@@ -16,7 +16,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 // import Button from '@mui/material/Button';
 // import Tooltip from '@mui/material/Tooltip';
 
-function NavBar({ page }) {
+function NavBar({ page, currentUser }) {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [anchorElAlbums, setAnchorElAlbums] = React.useState(null);
 
@@ -91,42 +91,62 @@ function NavBar({ page }) {
         >
           <MenuItem><Link to='/create-album' style={{ textDecoration: 'none' }}>New...</Link></MenuItem>
         </Menu>
-        <div>
-          <IconButton
-            size='large'
-            aria-label='account of current user'
-            aria-controls='menu-appbar'
-            aria-haspopup='true'
-            onClick={handleUserOpen}
-            color='inherit'
-          >
-            <AccountCircle />
-          </IconButton>
-          <Menu
-            id='user-appbar'
-            anchorEl={anchorElUser}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            open={Boolean(anchorElUser)}
-            onClick={handleUserClose}
-          >
-            <MenuItem onClick={handleUserClose}>Profile</MenuItem>
-          </Menu>
-        </div>
+        {
+          (currentUser)
+            ? (
+              <div>
+                <IconButton
+                  size='large'
+                  aria-label='account of current user'
+                  aria-controls='menu-appbar'
+                  aria-haspopup='true'
+                  onClick={handleUserOpen}
+                  color='inherit'
+                >
+                  <AccountCircle />
+                </IconButton>
+                <Menu
+                  id='user-appbar'
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClick={handleUserClose}
+                >
+                  <MenuItem onClick={handleUserClose}>Profile</MenuItem>
+                </Menu>
+              </div>
+            )
+            : (
+              <div>
+                <Typography
+                  variant='h6'
+                  component='div'
+                >
+                  <Link to='/login' style={{ textDecoration: 'none', color: 'white' }}>Login</Link>
+                </Typography>
+              </div>
+            )
+        }
       </Toolbar>
     </AppBar>
   );
 }
 
+const mapStateToProps = (state) => ({
+  currentUser: state.currentUser,
+});
+
 NavBar.propTypes = {
   page: PropTypes.string,
+  currentUser: PropTypes.string,
 };
 
 export default NavBar;
