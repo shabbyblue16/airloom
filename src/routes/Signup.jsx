@@ -11,17 +11,19 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { postUser } from '../actions';
 
 function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    console.log({
+    const user = {
       firstname: data.get('firstname'),
       lastname: data.get('lastname'),
       email: data.get('email'),
       password: data.get('password'),
-    });
+    };
+    postUser(user);
   };
 
   return (

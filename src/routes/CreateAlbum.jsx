@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { NavBar } from '../components';
-import postAlbum from '../actions/postAlbum';
+import { postAlbum } from '../actions';
 
 function CreateAlbum({ page }) {
   const [nameValue, setNameValue] = React.useState('Name');
