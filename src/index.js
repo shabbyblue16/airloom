@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import configureStore, { history } from './store';
 import './style/index.css';
 import App from './App';
-import { CreateAlbum, Login } from './routes';
+import { CreateAlbum, Login, Signup } from './routes';
 import { NavBar } from './components';
 
 const store = configureStore();
@@ -19,6 +19,7 @@ ReactDOM.render(
       <Routes>
         <Route exact path="/" element={<App />} />
         <Route path="/login" element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
         <Route path="/create-album" element={<CreateAlbum />} />
       </Routes>
     </Router>
