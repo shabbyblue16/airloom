@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -11,17 +13,20 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { getUser } from '../actions';
 
-function Login() {
+function Login({ setUser }) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     const data = new FormData(e.currentTarget);
-    console.log({
+    const user = {
       email: data.get('email'),
       password: data.get('password'),
-    });
+    };
+    setUser(user);
   };
 
   return (
@@ -94,4 +99,14 @@ function Login() {
   );
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({
+  setUser: (user) => {
+    dispatch(getUser(user));
+  },
+});
+
+Login.propTypes = ({
+  setUser: PropTypes.func,
+});
+
+export default connect(null, mapDispatchToProps)(Login);

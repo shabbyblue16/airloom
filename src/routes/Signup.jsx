@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -13,7 +15,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { postUser } from '../actions';
 
-function Signup() {
+function Signup({ createUser }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -23,7 +25,7 @@ function Signup() {
       email: data.get('email'),
       password: data.get('password'),
     };
-    postUser(user);
+    createUser(user);
   };
 
   return (
@@ -117,4 +119,14 @@ function Signup() {
   );
 }
 
-export default Signup;
+const mapDispatchToProps = (dispatch) => ({
+  createUser: (user) => {
+    dispatch(postUser(user));
+  },
+});
+
+Signup.propTypes = {
+  createUser: PropTypes.func,
+};
+
+export default connect(null, mapDispatchToProps)(Signup);

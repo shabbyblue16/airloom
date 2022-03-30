@@ -10,8 +10,8 @@ const {
 
 const router = express.Router();
 
-router.get('/users', getUser);
-router.post('/users', postUser);
+router.post('/users/auth', getUser);
+router.post('/users/create', postUser);
 router.post('/albums', postAlbum);
 
 module.exports = router;

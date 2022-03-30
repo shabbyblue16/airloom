@@ -1,5 +1,6 @@
-const { findUser } = require('./users');
+const { find, create } = require('./users');
 
 module.exports = {
-  findUser,
+  find,
+  create,
 };
