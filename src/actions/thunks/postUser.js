@@ -1,5 +1,6 @@
 const postUser = (user) => {
-  fetch(`${process.env.REACT_APP_LOCAL_IP}/users/create`, {
+  console.log(user);
+  fetch('http://localhost:5001/users/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(user),

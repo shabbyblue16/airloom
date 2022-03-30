@@ -1,5 +1,5 @@
 const getUser = (user) => {
-  fetch(`${process.env.REACT_APP_LOCAL_IP}/users/login`, {
+  fetch('/users/login', {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(user),
