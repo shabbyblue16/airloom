@@ -50,47 +50,51 @@ function NavBar({ page, currentUser }) {
         >
           <Link to='/' style={{ color: 'white', textDecoration: 'none' }}>Airloom</Link>
         </Typography>
-        <Typography
+        {/* <Typography
           variant='h4'
           component='div'
           sx={{ flexGrow: 1 }}
         >
           {page}
-        </Typography>
-        <Typography
-          variant='h6'
-          component='div'
-          sx={{ mr: 1 }}
-        >
-          Albums
-        </Typography>
-        <IconButton
-          size='large'
-          edge='start'
-          color='inherit'
-          aria-label='menu'
-          onClick={handleAlbumsOpen}
-          sx={{ mr: 2 }}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Menu
-          id='albums-appbar'
-          anchorEl={anchorElAlbums}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          keepMounted
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          open={Boolean(anchorElAlbums)}
-          onClick={handleAlbumsClose}
-        >
-          <MenuItem><Link to='/create-album' style={{ textDecoration: 'none' }}>New...</Link></MenuItem>
-        </Menu>
+        </Typography> */}
+        {currentUser && (
+          <div>
+            <Typography
+              variant='h6'
+              component='div'
+              sx={{ mr: 1 }}
+            >
+              Albums
+            </Typography>
+            <IconButton
+              size='large'
+              edge='start'
+              color='inherit'
+              aria-label='menu'
+              onClick={handleAlbumsOpen}
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id='albums-appbar'
+              anchorEl={anchorElAlbums}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElAlbums)}
+              onClick={handleAlbumsClose}
+            >
+              <MenuItem><Link to='/create-album' style={{ textDecoration: 'none' }}>New...</Link></MenuItem>
+            </Menu>
+          </div>
+        )}
         {
           (currentUser)
             ? (
