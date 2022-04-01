@@ -1,4 +1,7 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
 import AppBar from '@mui/material/AppBar';
 // import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,7 +16,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 // import Button from '@mui/material/Button';
 // import Tooltip from '@mui/material/Tooltip';
 
-function NavBar() {
+function NavBar({ page, currentUser }) {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [anchorElAlbums, setAnchorElAlbums] = React.useState(null);
 
@@ -45,74 +48,109 @@ function NavBar() {
           component='div'
           sx={{ flexGrow: 1 }}
         >
-          Airloom
+          <Link to='/' style={{ color: 'white', textDecoration: 'none' }}>Airloom</Link>
         </Typography>
-        <Typography
-          variant='h6'
+        {/* <Typography
+          variant='h4'
           component='div'
-          sx={{ mr: 1 }}
+          sx={{ flexGrow: 1 }}
         >
-          Albums
-        </Typography>
-        <IconButton
-          size='large'
-          edge='start'
-          color='inherit'
-          aria-label='menu'
-          onClick={handleAlbumsOpen}
-          sx={{ mr: 2 }}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Menu
-          id='albums-appbar'
-          anchorEl={anchorElAlbums}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          keepMounted
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          open={Boolean(anchorElAlbums)}
-          onClose={handleAlbumsClose}
-        >
-          <MenuItem onClick={handleAlbumsClose}>New...</MenuItem>
-        </Menu>
-        <div>
-          <IconButton
-            size='large'
-            aria-label='account of current user'
-            aria-controls='menu-appbar'
-            aria-haspopup='true'
-            onClick={handleUserOpen}
-            color='inherit'
-          >
-            <AccountCircle />
-          </IconButton>
-          <Menu
-            id='user-appbar'
-            anchorEl={anchorElUser}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            open={Boolean(anchorElUser)}
-            onClose={handleUserClose}
-          >
-            <MenuItem onClick={handleUserClose}>Profile</MenuItem>
-          </Menu>
-        </div>
+          {page}
+        </Typography> */}
+        {currentUser && (
+          <div>
+            <Typography
+              variant='h6'
+              component='div'
+              sx={{ mr: 1 }}
+            >
+              Albums
+            </Typography>
+            <IconButton
+              size='large'
+              edge='start'
+              color='inherit'
+              aria-label='menu'
+              onClick={handleAlbumsOpen}
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id='albums-appbar'
+              anchorEl={anchorElAlbums}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElAlbums)}
+              onClick={handleAlbumsClose}
+            >
+              <MenuItem><Link to='/create-album' style={{ textDecoration: 'none' }}>New...</Link></MenuItem>
+            </Menu>
+          </div>
+        )}
+        {
+          (currentUser)
+            ? (
+              <div>
+                <IconButton
+                  size='large'
+                  aria-label='account of current user'
+                  aria-controls='menu-appbar'
+                  aria-haspopup='true'
+                  onClick={handleUserOpen}
+                  color='inherit'
+                >
+                  <AccountCircle />
+                </IconButton>
+                <Menu
+                  id='user-appbar'
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClick={handleUserClose}
+                >
+                  <MenuItem onClick={handleUserClose}>Profile</MenuItem>
+                </Menu>
+              </div>
+            )
+            : (
+              <div>
+                <Typography
+                  variant='h6'
+                  component='div'
+                >
+                  <Link to='/login' style={{ textDecoration: 'none', color: 'white' }}>Login</Link>
+                </Typography>
+              </div>
+            )
+        }
       </Toolbar>
     </AppBar>
   );
 }
+
+const mapStateToProps = (state) => ({
+  currentUser: state.currentUser,
+});
+
+NavBar.propTypes = {
+  page: PropTypes.string,
+  currentUser: PropTypes.string,
+};
 
 export default NavBar;

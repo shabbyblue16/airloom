@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 const express = require('express');
-const { pgClient } = require('./db');
+const { dbConnect } = require('./db');
+const router = require('./routes');
 require('dotenv').config();
 
 const app = express();
@@ -16,9 +17,10 @@ app.use((req, res, next) => {
   next();
 });
 
-pgClient.connect()
+app.use(router);
+
+dbConnect()
   .then(async () => {
-    console.log('Connected to database');
     app.listen(process.env.PORT, () => {
       console.log(`Listening on port ${process.env.PORT}`);
     });
