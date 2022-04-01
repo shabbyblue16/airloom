@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,11 +13,14 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Alert from '@mui/material/Alert';
 import { getUser } from '../actions';
 
-function Login({ setUser }) {
+function Login({ setUser, history }) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [error, setError] = React.useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +29,12 @@ function Login({ setUser }) {
       email: data.get('email'),
       password: data.get('password'),
     };
-    setUser(user);
+    if (user.email === '' || user.password === '') {
+      setError('Fields are required');
+    } else {
+      setUser(user);
+      navigate('/grandmas-house');
+    }
   };
 
   return (
@@ -79,6 +87,11 @@ function Login({ setUser }) {
           >
             Log In
           </Button>
+          {error && (
+            <Alert severity='error' onClick={() => setError(null)}>
+              {error}
+            </Alert>
+          )}
           <Grid container>
             {/* <Grid item xs>
               <Typography component='div' variant='h6'>
@@ -107,6 +120,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 Login.propTypes = ({
   setUser: PropTypes.func,
+  // eslint-disable-next-line react/forbid-prop-types
+  history: PropTypes.object,
 });
 
 export default connect(null, mapDispatchToProps)(Login);

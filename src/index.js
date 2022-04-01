@@ -7,7 +7,12 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import configureStore, { history } from './store';
 import './style/index.css';
 import App from './App';
-import { CreateAlbum, Login, Signup } from './routes';
+import {
+  CreateAlbum,
+  Login,
+  Signup,
+  GrandmasHouse,
+} from './routes';
 import { NavBar } from './components';
 
 const store = configureStore();
@@ -17,10 +22,11 @@ ReactDOM.render(
     <Router history={history}>
       <NavBar />
       <Routes>
-        <Route exact path="/" element={<App />} />
-        <Route path="/login" element={<Login />} />
+        <Route exact path='/' element={<App />} />
+        <Route path='/login' element={<Login history={history} />} />
         <Route path='/signup' element={<Signup />} />
-        <Route path="/create-album" element={<CreateAlbum />} />
+        <Route path='/create-album' element={<CreateAlbum />} />
+        <Route path='/grandmas-house' element={<GrandmasHouse />} />
       </Routes>
     </Router>
   </Provider>,
