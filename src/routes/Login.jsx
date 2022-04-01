@@ -13,11 +13,13 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Alert from '@mui/material/Alert';
 import { getUser } from '../actions';
 
 function Login({ setUser }) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [error, setError] = React.useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +28,11 @@ function Login({ setUser }) {
       email: data.get('email'),
       password: data.get('password'),
     };
-    setUser(user);
+    if (user.email === '' || user.password === '') {
+      setError('Fields are required');
+    } else {
+      setUser(user);
+    }
   };
 
   return (
@@ -79,6 +85,11 @@ function Login({ setUser }) {
           >
             Log In
           </Button>
+          {error && (
+            <Alert severity='error' onClick={() => setError(null)}>
+              {error}
+            </Alert>
+          )}
           <Grid container>
             {/* <Grid item xs>
               <Typography component='div' variant='h6'>
