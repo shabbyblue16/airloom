@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,10 +16,11 @@ import Container from '@mui/material/Container';
 import Alert from '@mui/material/Alert';
 import { getUser } from '../actions';
 
-function Login({ setUser }) {
+function Login({ setUser, history }) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [error, setError] = React.useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,6 +33,7 @@ function Login({ setUser }) {
       setError('Fields are required');
     } else {
       setUser(user);
+      navigate('/grandmas-house');
     }
   };
 
@@ -118,6 +120,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 Login.propTypes = ({
   setUser: PropTypes.func,
+  // eslint-disable-next-line react/forbid-prop-types
+  history: PropTypes.object,
 });
 
 export default connect(null, mapDispatchToProps)(Login);
