@@ -1,5 +1,5 @@
 const usersAlbums = (albums) => ({
-  type: 'CURRENT_USER',
+  type: 'USERS_ALBUMS',
   albums,
 });
 

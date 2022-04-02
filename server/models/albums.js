@@ -17,14 +17,14 @@ const findAlbums = (userId, callback) => {
 const createAlbum = (album, callback) => {
   const query = {
     name: 'create-album',
-    text: 'INSERT INTO albums(text, users_id, cover_pic) VALUES($1, $2, $3) RETURNING *',
-    values: [album.text, album.userId, album.coverPic],
+    text: 'INSERT INTO albums(text, users_id, cover_pic, name) VALUES($1, $2, $3, $4) RETURNING *',
+    values: [album.text, album.userId, album.coverPic, album.name],
   };
   pgClient
     .query(query)
     .then((data) => callback(data.rows[0]))
     .catch((e) => {
-      // console.log(e.stack);
+      console.log(e.stack);
       callback('error creating album');
     });
 };

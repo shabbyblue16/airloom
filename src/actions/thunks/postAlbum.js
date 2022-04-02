@@ -1,11 +1,11 @@
 const postAlbum = (album) => {
-  fetch(`${process.env.REACT_APP_LOCAL_IP}/albums/create`, {
+  fetch('http://localhost:5001/albums/create', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(album),
   })
     .then((data) => {
-      console.log(data.status);
+      console.log(data);
     })
     .catch((err) => {
       console.log(err);

@@ -7,21 +7,23 @@ CREATE TABLE users (
 );
 
 CREATE TABLE albums (
-  id INT NOT NULL PRIMARY KEY,
-  text VARCHAR(8000)
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(40),
+  text TEXT,
+  cover_pic VARCHAR(200),
   users_id INT NOT NULL,
   FOREIGN KEY(users_id) REFERENCES users(id)
 );
 
 CREATE TABLE items (
-  id INT NOT NULL PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   text VARCHAR(8000),
   albums_id INT NOT NULL,
   FOREIGN KEY (albums_id) REFERENCES albums(id)
 );
 
 CREATE TABLE pics (
-  id INT NOT NULL PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   url VARCHAR(200) NOT NULL,
   items_id INT NOT NULL,
   FOREIGN KEY (items_id) REFERENCES items(id)

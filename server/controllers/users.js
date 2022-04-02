@@ -13,13 +13,12 @@ const getUser = (req, res) => {
       res.status(400).send(); // find correct code
     } else {
       user = userData;
-      user.albums = [];
       bcrypt.compare(login.password, userData.password, (err, match) => {
         if (!match) {
           res.status(401).send(); // find unauth code
         } else {
           findAlbums(user.id, (albumData) => {
-            console.log(albumData);
+            user.albums = albumData;
             res.status(200).json(user);
           });
         }
