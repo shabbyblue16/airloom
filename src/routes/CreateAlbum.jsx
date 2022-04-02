@@ -58,6 +58,7 @@ function CreateAlbum({ page, handlePostAlbum, currentUser }) {
             label='Name'
             variant='outlined'
             helperText=''
+            value={nameValue}
             sx={{ width: '60ch' }}
             onChange={handleNameChange}
           />
@@ -70,6 +71,7 @@ function CreateAlbum({ page, handlePostAlbum, currentUser }) {
             multiline
             rows={8}
             helperText=''
+            value={textValue}
             sx={{ width: '60ch' }}
             // defaultValue='Tell us your story'
             onChange={handleTextChange}

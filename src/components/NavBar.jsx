@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -16,7 +17,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 // import Button from '@mui/material/Button';
 // import Tooltip from '@mui/material/Tooltip';
 
-function NavBar({ page, currentUser }) {
+function NavBar({ page, currentUser, usersAlbums }) {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [anchorElAlbums, setAnchorElAlbums] = React.useState(null);
 
@@ -91,7 +92,14 @@ function NavBar({ page, currentUser }) {
               open={Boolean(anchorElAlbums)}
               onClick={handleAlbumsClose}
             >
-              <MenuItem><Link to='/create-album' style={{ textDecoration: 'none' }}>New...</Link></MenuItem>
+              <MenuItem><Link to='/create-album' style={{ textDecoration: 'none', color: 'black' }}>New...</Link></MenuItem>
+              {
+                usersAlbums.map((album, key) => (
+                  <MenuItem key={album.id}>
+                    <Link to='/album' style={{ textDecoration: 'none', color: 'black' }}>{album.name}</Link>
+                  </MenuItem>
+                ))
+              }
             </Menu>
           </>
         )}
@@ -146,12 +154,13 @@ function NavBar({ page, currentUser }) {
 
 const mapStateToProps = (state) => ({
   currentUser: state.currentUser,
+  usersAlbums: state.usersAlbums,
 });
 
 NavBar.propTypes = {
   page: PropTypes.string,
-  // eslint-disable-next-line react/forbid-prop-types
   currentUser: PropTypes.object,
+  usersAlbums: PropTypes.array,
 };
 
 export default connect(mapStateToProps)(NavBar);
