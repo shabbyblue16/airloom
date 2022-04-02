@@ -12,6 +12,6 @@ const router = express.Router();
 
 router.post('/users/auth', getUser);
 router.post('/users/create', postUser);
-router.post('/albums', postAlbum);
+router.post('/albums/create', postAlbum);
 
 module.exports = router;

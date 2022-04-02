@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
+import { connect } from 'react-redux';
 import AppBar from '@mui/material/AppBar';
 // import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -58,7 +58,7 @@ function NavBar({ page, currentUser }) {
           {page}
         </Typography> */}
         {currentUser && (
-          <div>
+          <>
             <Typography
               variant='h6'
               component='div'
@@ -93,7 +93,7 @@ function NavBar({ page, currentUser }) {
             >
               <MenuItem><Link to='/create-album' style={{ textDecoration: 'none' }}>New...</Link></MenuItem>
             </Menu>
-          </div>
+          </>
         )}
         {
           (currentUser)
@@ -150,7 +150,8 @@ const mapStateToProps = (state) => ({
 
 NavBar.propTypes = {
   page: PropTypes.string,
-  currentUser: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  currentUser: PropTypes.object,
 };
 
-export default NavBar;
+export default connect(mapStateToProps)(NavBar);

@@ -1,6 +1,6 @@
 const { pgClient } = require('../db');
 
-const find = (user, callback) => {
+const findUser = (user, callback) => {
   const query = {
     name: 'check-user',
     text: 'SELECT * FROM users WHERE email = $1',
@@ -14,9 +14,9 @@ const find = (user, callback) => {
     });
 };
 
-const create = (user, callback) => {
+const createUser = (user, callback) => {
   const query = {
-    name: 'fetch-user',
+    name: 'create-user',
     text: 'INSERT INTO users(email, password, firstname, lastname) VALUES($1, $2, $3, $4) RETURNING *',
     values: [user.email, user.password, user.firstname, user.lastname],
   };
@@ -30,6 +30,6 @@ const create = (user, callback) => {
 };
 
 module.exports = {
-  find,
-  create,
+  findUser,
+  createUser,
 };
