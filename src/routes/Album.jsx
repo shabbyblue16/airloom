@@ -1,9 +1,14 @@
+/* eslint-disable react/prop-types */
 import * as React from 'react';
+import { useLocation } from 'react-router-dom';
 
-function Album() {
+function Album(props) {
+  const location = useLocation();
+  const { test } = location.state;
+  console.log(location);
   return (
     <div>
-      whatever
+      {test}
     </div>
   );
 }

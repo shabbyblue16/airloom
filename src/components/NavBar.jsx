@@ -96,7 +96,13 @@ function NavBar({ page, currentUser, usersAlbums }) {
               {
                 usersAlbums.map((album, key) => (
                   <MenuItem key={album.id}>
-                    <Link to='/album' style={{ textDecoration: 'none', color: 'black' }}>{album.name}</Link>
+                    <Link
+                      to='/album'
+                      state={{ album, test: 'hello' }}
+                      style={{ textDecoration: 'none', color: 'black' }}
+                    >
+                      {album.name}
+                    </Link>
                   </MenuItem>
                 ))
               }
