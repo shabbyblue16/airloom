@@ -1,6 +1,9 @@
-const { find, create } = require('./users');
+const { findUser, createUser } = require('./users');
+const { findAlbums, createAlbum } = require('./albums');
 
 module.exports = {
-  find,
-  create,
+  findUser,
+  createUser,
+  findAlbums,
+  createAlbum,
 };

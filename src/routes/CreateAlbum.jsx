@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
@@ -6,9 +7,10 @@ import TextField from '@mui/material/TextField';
 import { NavBar } from '../components';
 import { postAlbum } from '../actions';
 
-function CreateAlbum({ page }) {
-  const [nameValue, setNameValue] = React.useState('Name');
-  const [textValue, setTextValue] = React.useState('This item\'s story');
+function CreateAlbum({ page, handlePostAlbum, currentUser }) {
+  const [nameValue, setNameValue] = React.useState('');
+  const [textValue, setTextValue] = React.useState('');
+  const [coverPic, setCoverPic] = React.useState('');
 
   const handleNameChange = (e) => {
     setNameValue(e.target.value);
@@ -21,9 +23,11 @@ function CreateAlbum({ page }) {
   const handleSave = () => {
     const album = {
       name: nameValue,
-      story: textValue,
+      text: textValue,
+      coverPic,
+      userId: currentUser.id,
     };
-    postAlbum(album);
+    handlePostAlbum(album, currentUser.albums);
     setNameValue('');
     setTextValue('');
   };
@@ -54,6 +58,7 @@ function CreateAlbum({ page }) {
             label='Name'
             variant='outlined'
             helperText=''
+            value={nameValue}
             sx={{ width: '60ch' }}
             onChange={handleNameChange}
           />
@@ -66,6 +71,7 @@ function CreateAlbum({ page }) {
             multiline
             rows={8}
             helperText=''
+            value={textValue}
             sx={{ width: '60ch' }}
             // defaultValue='Tell us your story'
             onChange={handleTextChange}
@@ -94,12 +100,21 @@ function CreateAlbum({ page }) {
   );
 }
 
-// const mapDispatchToProps = (dispatch) => ({
-//   handlePostAlbum: (album)
-// })
+const mapStateToProps = (state) => ({
+  currentUser: state.currentUser,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handlePostAlbum: (album, currentAlbums) => {
+    dispatch(postAlbum(album, currentAlbums));
+  },
+});
 
 CreateAlbum.propTypes = {
   page: PropTypes.string,
+  handlePostAlbum: PropTypes.func,
+  // eslint-disable-next-line react/forbid-prop-types
+  currentUser: PropTypes.object,
 };
 
-export default CreateAlbum;
+export default connect(mapStateToProps, mapDispatchToProps)(CreateAlbum);

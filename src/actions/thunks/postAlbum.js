@@ -1,11 +1,15 @@
-const postAlbum = (album) => {
-  fetch(`${process.env.REACT_APP_LOCAL_IP}/albums/create`, {
+import usersAlbums from '../usersAlbums';
+
+const postAlbum = (album, currentAlbums) => (dispatch) => {
+  fetch('http://localhost:5001/albums/create', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(album),
   })
+    .then((res) => res.json())
     .then((data) => {
-      console.log(data.status);
+      currentAlbums.push(data);
+      dispatch(usersAlbums(currentAlbums));
     })
     .catch((err) => {
       console.log(err);

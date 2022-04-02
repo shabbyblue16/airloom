@@ -8,10 +8,11 @@ import configureStore, { history } from './store';
 import './style/index.css';
 import App from './App';
 import {
+  Album,
   CreateAlbum,
+  GrandmasHouse,
   Login,
   Signup,
-  GrandmasHouse,
 } from './routes';
 import { NavBar } from './components';
 
@@ -26,6 +27,7 @@ ReactDOM.render(
         <Route path='/login' element={<Login history={history} />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/create-album' element={<CreateAlbum />} />
+        <Route exact={false} path='/album' element={<Album />} />
         <Route path='/grandmas-house' element={<GrandmasHouse />} />
       </Routes>
     </Router>
