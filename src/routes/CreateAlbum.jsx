@@ -27,7 +27,7 @@ function CreateAlbum({ page, handlePostAlbum, currentUser }) {
       coverPic,
       userId: currentUser.id,
     };
-    handlePostAlbum(album);
+    handlePostAlbum(album, currentUser.albums);
     setNameValue('');
     setTextValue('');
   };
@@ -103,8 +103,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handlePostAlbum: (album) => {
-    dispatch(postAlbum(album));
+  handlePostAlbum: (album, currentAlbums) => {
+    dispatch(postAlbum(album, currentAlbums));
   },
 });
 
