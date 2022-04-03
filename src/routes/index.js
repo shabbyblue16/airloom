@@ -1,13 +1,13 @@
 import Album from './Album';
 import CreateAlbum from './CreateAlbum';
-import GrandmasHouse from './GrandmasHouse';
+import Profile from './Profile';
 import Login from './Login';
 import Signup from './Signup';
 
 export {
   Album,
   CreateAlbum,
-  GrandmasHouse,
+  Profile,
   Login,
   Signup,
 };

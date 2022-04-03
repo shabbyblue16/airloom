@@ -17,7 +17,9 @@ CREATE TABLE albums (
 
 CREATE TABLE items (
   id SERIAL PRIMARY KEY,
-  text VARCHAR(8000),
+  name VARCHAR(40),
+  text TEXT,
+  location VARCHAR(40),
   albums_id INT NOT NULL,
   FOREIGN KEY (albums_id) REFERENCES albums(id)
 );

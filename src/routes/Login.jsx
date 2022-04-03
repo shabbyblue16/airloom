@@ -33,7 +33,7 @@ function Login({ setUser, history }) {
       setError('Fields are required');
     } else {
       setUser(user);
-      navigate('/grandmas-house');
+      navigate('/profile');
     }
   };
 
@@ -120,7 +120,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 Login.propTypes = ({
   setUser: PropTypes.func,
-  // eslint-disable-next-line react/forbid-prop-types
   history: PropTypes.object,
 });
 
