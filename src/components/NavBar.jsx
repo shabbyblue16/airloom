@@ -98,7 +98,7 @@ function NavBar({ page, currentUser, usersAlbums }) {
                   <MenuItem key={album.id}>
                     <Link
                       to='/album'
-                      state={{ album, test: 'hello' }}
+                      state={{ album }}
                       style={{ textDecoration: 'none', color: 'black' }}
                     >
                       {album.name}
