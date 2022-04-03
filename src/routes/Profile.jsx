@@ -1,6 +1,6 @@
 import React from 'react';
 
-function GrandmasHouse() {
+function Profile() {
   return (
     <div>
       This is where the album collection will be
@@ -8,4 +8,4 @@ function GrandmasHouse() {
   );
 }
 
-export default GrandmasHouse;
+export default Profile;

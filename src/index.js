@@ -10,7 +10,7 @@ import App from './App';
 import {
   Album,
   CreateAlbum,
-  GrandmasHouse,
+  Profile,
   Login,
   Signup,
 } from './routes';
@@ -28,7 +28,7 @@ ReactDOM.render(
         <Route path='/signup' element={<Signup />} />
         <Route path='/create-album' element={<CreateAlbum />} />
         <Route exact={false} path='/album' element={<Album />} />
-        <Route path='/grandmas-house' element={<GrandmasHouse />} />
+        <Route path='/profile' element={<Profile />} />
       </Routes>
     </Router>
   </Provider>,

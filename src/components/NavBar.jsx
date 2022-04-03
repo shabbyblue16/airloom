@@ -65,7 +65,7 @@ function NavBar({ page, currentUser, usersAlbums }) {
               component='div'
               sx={{ mr: 1 }}
             >
-              Albums
+              Collections
             </Typography>
             <IconButton
               size='large'
