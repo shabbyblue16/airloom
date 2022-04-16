@@ -45,7 +45,7 @@ function CreateAlbum({ page, handlePostAlbum, currentUser }) {
       >
         <Grid item>
           <p style={{ width: '60ch' }}>
-            Create a new album here.
+            Create a new collection here.
             Tell your people reading this why you decided to document
             and share the things that store lost memories
             and what these things are and container.
