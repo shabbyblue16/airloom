@@ -1,16 +1,19 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { NavBar } from '../components';
-import { postAlbum } from '../actions';
+import { postItem } from '../actions';
 
-function CreateAlbum({ page, handlePostAlbum, currentUser }) {
+function CreateItem({ handlePostItem }) {
   const [nameValue, setNameValue] = React.useState('');
   const [textValue, setTextValue] = React.useState('');
-  const [coverPic, setCoverPic] = React.useState('');
+  const [locValue, setLocValue] = React.useState('');
+  const location = useLocation();
+  const { albumId } = location.state;
 
   const handleNameChange = (e) => {
     setNameValue(e.target.value);
@@ -20,21 +23,25 @@ function CreateAlbum({ page, handlePostAlbum, currentUser }) {
     setTextValue(e.target.value);
   };
 
+  const handleLocChange = (e) => {
+    setLocValue(e.target.value);
+  };
+
   const handleSave = () => {
-    const album = {
+    const item = {
       name: nameValue,
+      location: locValue,
       text: textValue,
-      coverPic,
-      userId: currentUser.id,
+      albumId,
     };
-    handlePostAlbum(album, currentUser.albums);
+    handlePostItem(item);
     setNameValue('');
     setTextValue('');
+    setLocValue('');
   };
 
   return (
     <div>
-      {/* <NavBar page='Create Album' /> */}
       <Grid
         container
         spacing={3}
@@ -45,10 +52,7 @@ function CreateAlbum({ page, handlePostAlbum, currentUser }) {
       >
         <Grid item>
           <p style={{ width: '60ch' }}>
-            Create a new collection here.
-            Tell your people reading this why you decided to document
-            and share the things that store lost memories
-            and what these things are and container.
+            Create a new item here for your album here.
           </p>
         </Grid>
         <Grid item>
@@ -66,8 +70,20 @@ function CreateAlbum({ page, handlePostAlbum, currentUser }) {
         <Grid item>
           <TextField
             error={false}
+            id='loc-field'
+            label='Location'
+            variant='outlined'
+            helperText=''
+            value={locValue}
+            sx={{ width: '60ch' }}
+            onChange={handleLocChange}
+          />
+        </Grid>
+        <Grid item>
+          <TextField
+            error={false}
             id='text-field'
-            label='Tell us your story'
+            label='What is this thing'
             multiline
             rows={8}
             helperText=''
@@ -77,20 +93,23 @@ function CreateAlbum({ page, handlePostAlbum, currentUser }) {
             onChange={handleTextChange}
           />
         </Grid>
-        <Grid item>
+        <Grid item sx={{ width: '60ch' }}>
           <Button
             variant='contained'
             component='span'
+            fullWidth
+            sx={{ backgroundColor: '#cc5500' }}
           >
-            Pick Cover
+            Upload Pictures
           </Button>
         </Grid>
-        <Grid item>
+        <Grid item sx={{ width: '60ch' }}>
           <Button
             variant='contained'
             component='span'
+            fullWidth
             onClick={handleSave}
-            // sx={{ backgroundColor: '#cc5500' }}
+            sx={{ backgroundColor: '#cc5500' }}
           >
             Save Album
           </Button>
@@ -100,21 +119,18 @@ function CreateAlbum({ page, handlePostAlbum, currentUser }) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  currentUser: state.currentUser,
-});
+// const mapStateToProps = (state) => ({
+//   currentUser: state.currentUser,
+// });
 
 const mapDispatchToProps = (dispatch) => ({
-  handlePostAlbum: (album, currentAlbums) => {
-    dispatch(postAlbum(album, currentAlbums));
+  handlePostItem: (item) => {
+    dispatch(postItem(item));
   },
 });
 
-CreateAlbum.propTypes = {
-  page: PropTypes.string,
-  handlePostAlbum: PropTypes.func,
-  // eslint-disable-next-line react/forbid-prop-types
-  currentUser: PropTypes.object,
+CreateItem.propTypes = {
+  handlePostItem: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateAlbum);
+export default connect(null, mapDispatchToProps)(CreateItem);

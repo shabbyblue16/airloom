@@ -114,7 +114,7 @@ function Album({ usersAlbums }) {
               component='span'
               fullWidth
             >
-              <Link to='/create-item' style={{ textDecoration: 'none', color: 'white' }}>Add Item</Link>
+              <Link to='/create-item' state={{ albumId: album.id }} style={{ textDecoration: 'none', color: 'white' }}>Add Item</Link>
             </Button>
           </Grid>
         </Grid>
