@@ -29,7 +29,7 @@ ReactDOM.render(
         <Route path='/signup' element={<Signup />} />
         <Route path='/create-album' element={<CreateAlbum />} />
         <Route exact={false} path='/album' element={<Album />} />
-        <Route path='create-item' element={<CreateItem />} />
+        <Route path='/create-item' element={<CreateItem />} />
         <Route path='/profile' element={<Profile />} />
       </Routes>
     </Router>
