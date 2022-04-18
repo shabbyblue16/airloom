@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
+import InputLabel from '@mui/material/InputLabel';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { NavBar } from '../components';
@@ -12,6 +13,8 @@ function CreateItem({ handlePostItem }) {
   const [nameValue, setNameValue] = React.useState('');
   const [textValue, setTextValue] = React.useState('');
   const [locValue, setLocValue] = React.useState('');
+  const [files, setFiles] = React.useState([]);
+
   const location = useLocation();
   const { albumId } = location.state;
 
@@ -27,17 +30,23 @@ function CreateItem({ handlePostItem }) {
     setLocValue(e.target.value);
   };
 
+  const handleFileChange = (e) => {
+    setFiles(...files, e.target.files[0]);
+  };
+
   const handleSave = () => {
     const item = {
       name: nameValue,
       location: locValue,
       text: textValue,
       albumId,
+      files,
     };
     handlePostItem(item);
     setNameValue('');
     setTextValue('');
     setLocValue('');
+    setFiles([]);
   };
 
   return (
@@ -94,14 +103,24 @@ function CreateItem({ handlePostItem }) {
           />
         </Grid>
         <Grid item sx={{ width: '60ch' }}>
-          <Button
-            variant='contained'
-            component='span'
-            fullWidth
-            sx={{ backgroundColor: '#cc5500' }}
-          >
-            Upload Pictures
-          </Button>
+          <input
+            hidden
+            // multiple
+            accept='image/*'
+            type='file'
+            id='upload-image-input'
+            onChange={handleFileChange}
+          />
+          <InputLabel htmlFor='upload-image-input'>
+            <Button
+              variant='contained'
+              component='span'
+              fullWidth
+              sx={{ backgroundColor: '#cc5500' }}
+            >
+              Upload Pictures
+            </Button>
+          </InputLabel>
         </Grid>
         <Grid item sx={{ width: '60ch' }}>
           <Button
@@ -118,10 +137,6 @@ function CreateItem({ handlePostItem }) {
     </div>
   );
 }
-
-// const mapStateToProps = (state) => ({
-//   currentUser: state.currentUser,
-// });
 
 const mapDispatchToProps = (dispatch) => ({
   handlePostItem: (item) => {

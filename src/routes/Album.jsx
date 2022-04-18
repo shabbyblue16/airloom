@@ -109,13 +109,15 @@ function Album({ usersAlbums }) {
             </Typography>
           </Grid>
           <Grid item sx={{ width: '50%' }}>
-            <Button
-              variant='contained'
-              component='span'
-              fullWidth
-            >
-              <Link to='/create-item' state={{ albumId: album.id }} style={{ textDecoration: 'none', color: 'white' }}>Add Item</Link>
-            </Button>
+            <Link to='/create-item' state={{ albumId: album.id }} style={{ textDecoration: 'none', color: 'white' }}>
+              <Button
+                variant='contained'
+                component='span'
+                fullWidth
+              >
+                Add Item
+              </Button>
+            </Link>
           </Grid>
         </Grid>
       </Box>
