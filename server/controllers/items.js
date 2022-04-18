@@ -1,6 +1,11 @@
-// import { createItem } from '../models';
 const aws = require('aws-sdk');
 const fs = require('fs');
+const {
+  findItems,
+  createItem,
+  findPics,
+  createPic,
+} = require('../models');
 
 const postItem = (req, res) => {
   aws.config.setPromisesDependency();
@@ -12,10 +17,10 @@ const postItem = (req, res) => {
 
   const s3 = new aws.S3();
   const params = {
-    ACL: 'public-read',
+    // ACL: 'public-read',
     Bucket: process.env.BUCKET_NAME,
-    Body: fs.createReadStream(req.file.path),
-    Key: `itemPicture/${req.file.originalname}`,
+    Body: fs.createReadStream(req.files[0].path),
+    Key: `item/${req.files[0].originalname}`,
   };
 
   s3.upload(params, (err, data) => {
@@ -24,26 +29,26 @@ const postItem = (req, res) => {
     }
 
     if (data) {
-      fs.unlinkSync(req.file.path); // Empty temp folder
+      fs.unlinkSync(req.files[0].path); // Empty temp folder
       const url = data.Location;
-      // create new item w/ albumId and new pic w/ itemId in database
-      // const item = req.body;
-      // createItem(item, (data) => {
-      //   const newItem = data;
-      //   newItem.pics = [url];
-      //   if (data === 'error creating item') {
-      //     res.status(400).send();
-      //   } else {
-      //     const pic = { url, itemId: data.id };
-      //     createPic(pic, (picData) => {
-      //       if (picData === 'error creating pic') {
-      //         res.status(400).send();
-      //       } else {
-      //       res.status(200).json(newItem);
-      //       }
-      //     })
-      //   }
-      // });
+      // create new item w / albumId and new pic w / itemId in database
+      const item = req.body;
+      createItem(item, (itemData) => {
+        const newItem = itemData;
+        if (data === 'error creating item') {
+          res.status(400).send();
+        } else {
+          const pic = { url, itemId: itemData.id };
+          createPic(pic, (picData) => {
+            if (picData === 'error saving pic') {
+              res.status(400).send();
+            } else {
+              newItem.pics = [picData];
+              res.status(200).json(newItem);
+            }
+          });
+        }
+      });
     }
   });
 };
