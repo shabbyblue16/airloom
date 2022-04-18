@@ -31,7 +31,7 @@ function CreateItem({ handlePostItem }) {
   };
 
   const handleFileChange = (e) => {
-    setFiles(...files, e.target.files[0]);
+    setFiles([...files, e.target.files[0]]);
   };
 
   const handleSave = () => {
@@ -105,9 +105,10 @@ function CreateItem({ handlePostItem }) {
         <Grid item sx={{ width: '60ch' }}>
           <input
             hidden
-            // multiple
+            multiple
             accept='image/*'
             type='file'
+            name='pictures'
             id='upload-image-input'
             onChange={handleFileChange}
           />
