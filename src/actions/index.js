@@ -1,5 +1,6 @@
 import currentUser from './currentUser';
 import usersAlbums from './usersAlbums';
+import usersItems from './usersItems';
 import {
   getUser,
   postUser,
@@ -10,6 +11,7 @@ import {
 export {
   currentUser,
   usersAlbums,
+  usersItems,
   getUser,
   postUser,
   postAlbum,
