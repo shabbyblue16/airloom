@@ -10,9 +10,10 @@ const getUser = (user) => (dispatch) => {
   })
     .then((res) => res.json())
     .then((data) => {
+      console.log(data);
       dispatch(currentUser(data));
       dispatch(usersAlbums(data.albums));
-      dispatch(usersItems(data.items));
+      // dispatch(usersItems(data.items));
     })
     .catch((err) => {
       console.log(err);
