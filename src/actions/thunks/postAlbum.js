@@ -8,8 +8,7 @@ const postAlbum = (album, currentAlbums) => (dispatch) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      currentAlbums.push(data);
-      dispatch(usersAlbums(currentAlbums));
+      dispatch(usersAlbums([...currentAlbums, data]));
     })
     .catch((err) => {
       console.log(err);

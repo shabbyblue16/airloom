@@ -7,9 +7,9 @@ import InputLabel from '@mui/material/InputLabel';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { NavBar } from '../components';
-import { postItem } from '../actions';
+import { usersItems, postItem } from '../actions';
 
-function CreateItem({ handlePostItem }) {
+function CreateItem({ currentItems, handlePostItem }) {
   const [nameValue, setNameValue] = React.useState('');
   const [textValue, setTextValue] = React.useState('');
   const [locValue, setLocValue] = React.useState('');
@@ -35,14 +35,14 @@ function CreateItem({ handlePostItem }) {
   };
 
   const handleSave = () => {
-    const item = {
+    const newItem = {
       name: nameValue,
       location: locValue,
       text: textValue,
       albumId,
       files,
     };
-    handlePostItem(item);
+    handlePostItem(newItem, currentItems);
     setNameValue('');
     setTextValue('');
     setLocValue('');
@@ -61,7 +61,7 @@ function CreateItem({ handlePostItem }) {
       >
         <Grid item>
           <p style={{ width: '60ch' }}>
-            Create a new item here for your album here.
+            Create a new item here for your collection here.
           </p>
         </Grid>
         <Grid item>
@@ -139,6 +139,10 @@ function CreateItem({ handlePostItem }) {
   );
 }
 
+const mapStateToProps = (state) => ({
+  currentItems: state.usersItems,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   handlePostItem: (item) => {
     dispatch(postItem(item));
@@ -146,6 +150,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 CreateItem.propTypes = {
+  currentItems: PropTypes.object,
   handlePostItem: PropTypes.func,
 };
 

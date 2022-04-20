@@ -1,6 +1,6 @@
-import usersAlbums from '../usersAlbums';
+import usersItems from '../usersItems';
 
-const postItem = (item) => (dispatch) => {
+const postItem = (newItem, items) => (dispatch) => {
   const form = new FormData();
   const {
     name,
@@ -8,7 +8,7 @@ const postItem = (item) => (dispatch) => {
     text,
     albumId,
     files,
-  } = item;
+  } = newItem;
   form.append('name', name);
   form.append('location', location);
   form.append('text', text);
@@ -25,6 +25,9 @@ const postItem = (item) => (dispatch) => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
+      const updatedItems = items;
+      updatedItems[albumId].push(data);
+      dispatch(usersItems(updatedItems));
     })
     .catch((err) => {
       console.log(err);

@@ -1,17 +1,19 @@
 import * as React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Container from '@mui/material/Container';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
-import IconButton from '@mui/material/IconButton';
+import {
+  Grid,
+  TextField,
+  Typography,
+  Button,
+  Box,
+  Stack,
+  Container,
+  ImageList,
+  ImageListItem,
+  ImageListItemBar,
+  IconButton,
+} from '@mui/material';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 const itemData = [
@@ -137,12 +139,18 @@ function Album({ usersAlbums }) {
 
           return (
             <ImageListItem key={item.id} cols={cols} rows={rows}>
-              <img
-                src={`${item.img}?w=${250 * cols}&h=${200 * rows}&fit=cover&auto=format`}
-                srcSet={`${item.img}?w=${250 * cols}&h=${200 * rows}&fit=cover&auto=format&dpr=2 2x`}
-                alt={item.title}
-                loading='lazy'
-              />
+              <Link
+                to='/item'
+                state={{ item }}
+                style={{ textDecoration: 'none' }}
+              >
+                <img
+                  src={`${item.img}?w=${250 * cols}&h=${200 * rows}&fit=cover&auto=format`}
+                  srcSet={`${item.img}?w=${250 * cols}&h=${200 * rows}&fit=cover&auto=format&dpr=2 2x`}
+                  alt={item.title}
+                  loading='lazy'
+                />
+              </Link>
               <ImageListItemBar
                 sx={{
                   background: 'none',

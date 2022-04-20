@@ -10,12 +10,13 @@ import App from './App';
 import {
   Album,
   CreateAlbum,
+  Item,
   CreateItem,
   Profile,
   Login,
   Signup,
 } from './routes';
-import { NavBar } from './components';
+import { NavBar, Footer } from './components';
 
 const store = configureStore();
 
@@ -30,8 +31,10 @@ ReactDOM.render(
         <Route path='/create-album' element={<CreateAlbum />} />
         <Route exact={false} path='/album' element={<Album />} />
         <Route path='/create-item' element={<CreateItem />} />
+        <Route path='/item' element={<Item />} />
         <Route path='/profile' element={<Profile />} />
       </Routes>
+      <Footer />
     </Router>
   </Provider>,
   document.getElementById('root'),
