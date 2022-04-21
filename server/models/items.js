@@ -2,26 +2,16 @@ const { pgClient } = require('../db');
 const { findPics } = require('./pics');
 
 const findItems = (albumId, callback) => {
-  const itemQuery = {
+  const query = {
     name: 'find-album-items',
-    text: 'SELECT * FROM items WHERE albums_id = $1',
+    text: 'SELECT i.id, i.name, i.location, i.text, (select array(select p.url FROM pics p WHERE p.items_id = i.id)) as urls FROM items i WHERE albums_id = $1',
     values: [albumId],
   };
   pgClient
-    .query(itemQuery)
-    .then(async (data) => {
-      const items = data.rows;
-      await items.forEach(async (item, index) => {
-        await findPics(item.id, (picData) => {
-          if (picData !== 'pics not found') {
-            items[index].pics = picData;
-          }
-        });
-      });
-      return items;
-    })
-    .then((data) => callback(data))
+    .query(query)
+    .then((data) => callback(data.rows))
     .catch((e) => {
+      console.log(e);
       callback('items not found');
     });
 };

@@ -5,6 +5,7 @@ import {
   getUser,
   postUser,
   postAlbum,
+  getItems,
   postItem,
 } from './thunks';
 
@@ -15,5 +16,6 @@ export {
   getUser,
   postUser,
   postAlbum,
+  getItems,
   postItem,
 };

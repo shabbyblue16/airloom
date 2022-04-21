@@ -8,12 +8,14 @@ const {
 } = require('../models');
 
 const getItems = (req, res) => {
-  const { albumId } = req.body;
+  const { albumId } = req.query;
+  console.log(albumId, 'be id');
   findItems(albumId, (itemData) => {
     if (itemData === 'items not found') {
+      console.log(itemData);
       res.status(400).send();
     } else {
-      console.log(itemData);
+      console.log('itemData', itemData);
       res.status(200).json(itemData);
     }
   });

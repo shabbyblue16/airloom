@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
@@ -50,7 +51,7 @@ const itemData = [
   },
 ];
 
-function Album({ usersAlbums }) {
+function Album({ usersAlbums, items }) {
   const location = useLocation();
   const { album } = location.state;
 
@@ -123,67 +124,75 @@ function Album({ usersAlbums }) {
           </Grid>
         </Grid>
       </Box>
-      <ImageList
-        sx={{
-          width: '50%',
-          // height: '30%',
-          // transform: 'translateZ(0)',
-          float: 'right',
-        }}
-        rowHeight={350}
-        gap={1}
-      >
-        {itemData.map((item) => {
-          const cols = item.featured ? 2 : 1;
-          const rows = item.featured ? 2 : 1;
+      {
+        !items[album.id]
+          ? <Typography sx={{ p: 20 }}>Loading...</Typography>
+          : (
+            <ImageList
+              sx={{
+                width: '50%',
+                // height: '30%',
+                // transform: 'translateZ(0)',
+                float: 'right',
+              }}
+              rowHeight={350}
+              gap={1}
+            >
+              {itemData.map((item) => {
+                const cols = item.featured ? 2 : 1;
+                const rows = item.featured ? 2 : 1;
 
-          return (
-            <ImageListItem key={item.id} cols={cols} rows={rows}>
-              <Link
-                to='/item'
-                state={{ item }}
-                style={{ textDecoration: 'none', height: '100%', display: 'block' }}
-              >
-                <img
-                  src={`${item.img}?w=${250 * cols}&h=${200 * rows}&fit=cover&auto=format`}
-                  srcSet={`${item.img}?w=${250 * cols}&h=${200 * rows}&fit=cover&auto=format&dpr=2 2x`}
-                  alt={item.title}
-                  loading='lazy'
-                  style={{ width: '100%', height: '100%' }}
-                />
-              </Link>
-              <ImageListItemBar
-                sx={{
-                  background: 'none',
-                  // 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, '
-                  // + 'rgba(0,0,0,0.3) 70% rgba(0,0,0,0) 100%)',
-                }}
-                title={item.title}
-                position='top'
-                actionIcon={(
-                  <IconButton
-                    sx={{ color: 'white' }}
-                    aria-label={`star ${item.title}`}
-                  >
-                    <StarBorderIcon />
-                  </IconButton>
-                )}
-                actionPosition='left'
-              />
-            </ImageListItem>
-          );
-        })}
-      </ImageList>
+                return (
+                  <ImageListItem key={item.id} cols={cols} rows={rows}>
+                    <Link
+                      to='/item'
+                      state={{ item }}
+                      style={{ textDecoration: 'none', height: '100%', display: 'block' }}
+                    >
+                      <img
+                        src={`${item.img}?w=${250 * cols}&h=${200 * rows}&fit=cover&auto=format`}
+                        srcSet={`${item.img}?w=${250 * cols}&h=${200 * rows}&fit=cover&auto=format&dpr=2 2x`}
+                        alt={item.title}
+                        loading='lazy'
+                        style={{ width: '100%', height: '100%' }}
+                      />
+                    </Link>
+                    <ImageListItemBar
+                      sx={{
+                        background: 'none',
+                        // 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, '
+                        // + 'rgba(0,0,0,0.3) 70% rgba(0,0,0,0) 100%)',
+                      }}
+                      title={item.title}
+                      position='top'
+                      actionIcon={(
+                        <IconButton
+                          sx={{ color: 'white' }}
+                          aria-label={`star ${item.title}`}
+                        >
+                          <StarBorderIcon />
+                        </IconButton>
+                      )}
+                      actionPosition='left'
+                    />
+                  </ImageListItem>
+                );
+              })}
+            </ImageList>
+          )
+      }
     </Stack>
   );
 }
 
 const mapStateToProps = (state) => ({
   usersAlbums: state.usersAlbums,
+  items: state.usersItems,
 });
 
 Album.propTypes = ({
-  usersAlbums: PropTypes.object,
+  usersAlbums: PropTypes.array,
+  items: PropTypes.object,
 });
 
-export default Album;
+export default connect(mapStateToProps)(Album);

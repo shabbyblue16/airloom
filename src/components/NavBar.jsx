@@ -16,8 +16,9 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 // import Avatar from '@mui/material/Avatar';
 // import Button from '@mui/material/Button';
 // import Tooltip from '@mui/material/Tooltip';
+import { getItems } from '../actions';
 
-function NavBar({ page, currentUser, usersAlbums }) {
+function NavBar({ currentUser, usersAlbums, setItems }) {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [anchorElAlbums, setAnchorElAlbums] = React.useState(null);
 
@@ -35,6 +36,10 @@ function NavBar({ page, currentUser, usersAlbums }) {
 
   const handleAlbumsClose = () => {
     setAnchorElAlbums(null);
+  };
+
+  const handleFetch = (albumId) => {
+    setItems(albumId);
   };
 
   return (
@@ -95,7 +100,7 @@ function NavBar({ page, currentUser, usersAlbums }) {
               <MenuItem><Link to='/create-album' style={{ textDecoration: 'none', color: 'black' }}>New...</Link></MenuItem>
               {
                 usersAlbums.map((album, key) => (
-                  <MenuItem key={album.id}>
+                  <MenuItem key={album.id} onClick={() => handleFetch(album.id)}>
                     <Link
                       to='/album'
                       state={{ album }}
@@ -163,10 +168,16 @@ const mapStateToProps = (state) => ({
   usersAlbums: state.usersAlbums,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  setItems: (albumId) => {
+    dispatch(getItems(albumId));
+  },
+});
+
 NavBar.propTypes = {
-  page: PropTypes.string,
   currentUser: PropTypes.object,
   usersAlbums: PropTypes.array,
+  setItems: PropTypes.func,
 };
 
-export default connect(mapStateToProps)(NavBar);
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
