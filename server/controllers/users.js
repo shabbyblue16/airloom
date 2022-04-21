@@ -3,6 +3,7 @@ const {
   findUser,
   createUser,
   findAlbums,
+  findItems,
 } = require('../models');
 
 const getUser = (req, res) => {
@@ -17,7 +18,7 @@ const getUser = (req, res) => {
         if (!match) {
           res.status(401).send(); // find unauth code
         } else {
-          findAlbums(user.id, (albumData) => {
+          findAlbums(user.id, async (albumData) => {
             user.albums = albumData;
             res.status(200).json(user);
           });

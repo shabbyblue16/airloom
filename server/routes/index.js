@@ -10,6 +10,7 @@ const {
   getUser,
   postUser,
   postAlbum,
+  getItems,
   postItem,
 } = require('../controllers');
 
@@ -18,6 +19,7 @@ const router = express.Router();
 router.post('/users/auth', getUser);
 router.post('/users/create', postUser);
 router.post('/albums/create', postAlbum);
+router.get('/items/get', getItems);
 router
   .post(
     '/items/create',

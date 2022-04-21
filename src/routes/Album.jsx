@@ -142,13 +142,14 @@ function Album({ usersAlbums }) {
               <Link
                 to='/item'
                 state={{ item }}
-                style={{ textDecoration: 'none' }}
+                style={{ textDecoration: 'none', height: '100%', display: 'block' }}
               >
                 <img
                   src={`${item.img}?w=${250 * cols}&h=${200 * rows}&fit=cover&auto=format`}
                   srcSet={`${item.img}?w=${250 * cols}&h=${200 * rows}&fit=cover&auto=format&dpr=2 2x`}
                   alt={item.title}
                   loading='lazy'
+                  style={{ width: '100%', height: '100%' }}
                 />
               </Link>
               <ImageListItemBar

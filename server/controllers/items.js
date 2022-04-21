@@ -7,6 +7,18 @@ const {
   createPic,
 } = require('../models');
 
+const getItems = (req, res) => {
+  const { albumId } = req.body;
+  findItems(albumId, (itemData) => {
+    if (itemData === 'items not found') {
+      res.status(400).send();
+    } else {
+      console.log(itemData);
+      res.status(200).json(itemData);
+    }
+  });
+};
+
 const postItem = (req, res) => {
   aws.config.setPromisesDependency();
   aws.config.update({
@@ -53,4 +65,4 @@ const postItem = (req, res) => {
   });
 };
 
-module.exports = { postItem };
+module.exports = { getItems, postItem };
