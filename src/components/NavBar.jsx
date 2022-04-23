@@ -18,7 +18,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 // import Tooltip from '@mui/material/Tooltip';
 import { getItems } from '../actions';
 
-function NavBar({ currentUser, usersAlbums, setItems }) {
+function NavBar({ currentUser, usersAlbums, fetchItems }) {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [anchorElAlbums, setAnchorElAlbums] = React.useState(null);
 
@@ -38,8 +38,8 @@ function NavBar({ currentUser, usersAlbums, setItems }) {
     setAnchorElAlbums(null);
   };
 
-  const handleFetch = (albumId) => {
-    setItems(albumId);
+  const handleAlbumClick = (albumId) => {
+    fetchItems(albumId);
   };
 
   return (
@@ -100,7 +100,7 @@ function NavBar({ currentUser, usersAlbums, setItems }) {
               <MenuItem><Link to='/create-album' style={{ textDecoration: 'none', color: 'black' }}>New...</Link></MenuItem>
               {
                 usersAlbums.map((album, key) => (
-                  <MenuItem key={album.id} onClick={() => handleFetch(album.id)}>
+                  <MenuItem key={album.id} onClick={(() => handleAlbumClick(album.id))}>
                     <Link
                       to='/album'
                       state={{ album }}
@@ -169,7 +169,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setItems: (albumId) => {
+  fetchItems: (albumId) => {
     dispatch(getItems(albumId));
   },
 });
@@ -177,7 +177,7 @@ const mapDispatchToProps = (dispatch) => ({
 NavBar.propTypes = {
   currentUser: PropTypes.object,
   usersAlbums: PropTypes.array,
-  setItems: PropTypes.func,
+  fetchItems: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

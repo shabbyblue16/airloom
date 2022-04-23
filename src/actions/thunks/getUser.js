@@ -1,6 +1,5 @@
 import currentUser from '../currentUser';
 import usersAlbums from '../usersAlbums';
-import usersItems from '../usersItems';
 
 const getUser = (user) => (dispatch) => {
   fetch('http://localhost:5001/users/auth', {

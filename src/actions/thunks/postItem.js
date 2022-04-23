@@ -1,4 +1,4 @@
-import usersItems from '../usersItems';
+import changeItems from '../changeItems';
 
 const postItem = (newItem, items) => (dispatch) => {
   const form = new FormData();
@@ -27,7 +27,7 @@ const postItem = (newItem, items) => (dispatch) => {
       console.log(data);
       const updatedItems = items;
       updatedItems[albumId].push(data);
-      dispatch(usersItems(updatedItems));
+      dispatch(changeItems(updatedItems));
     })
     .catch((err) => {
       console.log(err);

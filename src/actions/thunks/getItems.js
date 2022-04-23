@@ -1,14 +1,12 @@
-import usersItems from '../usersItems';
+import changeItems from '../changeItems';
 
 const getItems = (albumId) => (dispatch, getState) => {
-  console.log('type', typeof albumId);
   fetch(`http://localhost:5001/items/get/?albumId=${albumId}`)
     .then((res) => res.json())
     .then((data) => {
-      console.log('items', data);
-      const { items } = getState().usersItems;
-      items[albumId] = data;
-      dispatch(usersItems(items));
+      const { usersItems } = getState();
+      usersItems[albumId] = data;
+      dispatch(changeItems(usersItems));
     })
     .catch((err) => {
       console.log(err);
