@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1,
+    "urls": ["https://images.unsplash.com/photo-1522770179533-24471fcdba45"],
+    "name": "Camera",
+    "author": "@helloimnik",
+    "featured": true
+  },
+  {
+    "id": 2,
+    "urls": ["https://images.unsplash.com/photo-1533827432537-70133748f5c8"],
+    "name": "Hats",
+    "author": "@hjrc33"
+  },
+  {
+    "id": 3,
+    "urls": ["https://images.unsplash.com/photo-1516802273409-68526ee1bdd6"],
+    "name": "Basketball",
+    "author": "@tjdragotta"
+  },
+  {
+    "id": 4,
+    "urls": ["https://images.unsplash.com/photo-1471357674240-e1a485acb3e1"],
+    "name": "Sea star",
+    "author": "@peterlaste"
+  },
+  {
+    "id": 5,
+    "urls": ["https://images.unsplash.com/photo-1589118949245-7d38baf380d6"],
+    "name": "Bike",
+    "author": "@southside_customs"
+  }
+]

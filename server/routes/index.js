@@ -19,7 +19,7 @@ const router = express.Router();
 router.post('/users/auth', getUser);
 router.post('/users/create', postUser);
 router.post('/albums/create', postAlbum);
-router.get('/items/get', getItems);
+router.get('/items/get/:albumId?', getItems);
 router
   .post(
     '/items/create',

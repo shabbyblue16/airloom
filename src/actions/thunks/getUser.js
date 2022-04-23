@@ -1,6 +1,5 @@
 import currentUser from '../currentUser';
 import usersAlbums from '../usersAlbums';
-import usersItems from '../usersItems';
 
 const getUser = (user) => (dispatch) => {
   fetch('http://localhost:5001/users/auth', {
@@ -10,10 +9,8 @@ const getUser = (user) => (dispatch) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       dispatch(currentUser(data));
       dispatch(usersAlbums(data.albums));
-      // dispatch(usersItems(data.items));
     })
     .catch((err) => {
       console.log(err);
