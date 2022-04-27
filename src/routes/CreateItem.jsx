@@ -7,7 +7,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { NavBar } from '../components';
-import { usersItems, postItem } from '../actions';
+import { postItem } from '../actions';
 
 function CreateItem({ currentItems, handlePostItem }) {
   const [nameValue, setNameValue] = React.useState('');
