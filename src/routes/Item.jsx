@@ -37,14 +37,20 @@ function Item() {
             align='center'
             gutterBottom
           >
-            Item layout
+            {item.name}
+          </Typography>
+          <Typography
+            variant='h5'
+            align='center'
+          >
+            <em>{item.location}</em>
           </Typography>
           <Typography
             variant='h5'
             align='center'
             paragraph
           >
-            Something about the item
+            {item.text}
           </Typography>
         </Container>
       </Box>
@@ -53,14 +59,14 @@ function Item() {
         maxWidth='md'
       >
         <Grid container spacing={4}>
-          {phCards.map((card) => (
+          {item.urls.map((card) => (
             <Grid item key={card} xs={12} sm={6} md={4}>
               <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <CardMedia
                   component='img'
                   sx={{ pt: '56.25%' }}
-                  image='https://source.unsplash.com/random'
-                  alt='random'
+                  image={card}
+                  alt='item-pic'
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography variant='h5' component='h2' gutterBottom>
