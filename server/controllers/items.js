@@ -43,7 +43,6 @@ const postItem = (req, res) => {
     if (data) {
       fs.unlinkSync(req.files[0].path); // Empty temp folder
       const url = data.Location;
-      // create new item w / albumId and new pic w / itemId in database
       const item = req.body;
       createItem(item, (itemData) => {
         const newItem = itemData;

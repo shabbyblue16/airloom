@@ -13,7 +13,12 @@ const getUser = (req, res) => {
     if (!userData || userData === 'not found') {
       res.status(400).send(); // find correct code
     } else {
-      user = userData;
+      user = {
+        id: userData.id,
+        email: userData.email,
+        firstname: userData.firstname,
+        lastname: userData.lastname,
+      };
       bcrypt.compare(login.password, userData.password, (err, match) => {
         if (!match) {
           res.status(401).send(); // find unauth code
