@@ -5,6 +5,7 @@ import CreateItem from './CreateItem';
 import Profile from './Profile';
 import Login from './Login';
 import Signup from './Signup';
+import Landing from './Landing';
 
 export {
   Album,
@@ -14,4 +15,5 @@ export {
   Profile,
   Login,
   Signup,
+  Landing,
 };

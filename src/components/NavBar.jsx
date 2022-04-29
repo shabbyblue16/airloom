@@ -148,14 +148,25 @@ function NavBar({ currentUser, usersAlbums, fetchItems }) {
               </div>
             )
             : (
-              <div>
-                <Typography
-                  variant='h6'
-                  component='div'
-                >
-                  <Link to='/login' style={{ textDecoration: 'none', color: 'white' }}>Login</Link>
-                </Typography>
-              </div>
+              <>
+                <div>
+                  <Typography
+                    variant='h6'
+                    component='div'
+                    sx={{ mr: 4 }}
+                  >
+                    <Link to='/login' style={{ textDecoration: 'none', color: 'white' }}>Log In</Link>
+                  </Typography>
+                </div>
+                <div>
+                  <Typography
+                    variant='h6'
+                    component='div'
+                  >
+                    <Link to='/signup' style={{ textDecoration: 'none', color: 'white' }}>Sign Up</Link>
+                  </Typography>
+                </div>
+              </>
             )
         }
       </Toolbar>

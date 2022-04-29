@@ -9,7 +9,6 @@ const {
 
 const getItems = (req, res) => {
   const { albumId } = req.query;
-  console.log(albumId, 'be id');
   findItems(albumId, (itemData) => {
     if (itemData === 'items not found') {
       res.status(400).send();
