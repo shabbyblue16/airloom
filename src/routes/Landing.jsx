@@ -1,29 +1,37 @@
 import * as React from 'react';
-// import AppBar from '@mui/material/AppBar';
-// import Box from '@mui/material/Box';
-// import Toolbar from '@mui/material/Toolbar';
-// import IconButton from '@mui/material/IconButton';
-// import Typography from '@mui/material/Typography';
-// import Menu from '@mui/material/Menu';
-// import MenuIcon from '@mui/icons-material/Menu';
-// import MenuItem from '@mui/material/MenuItem';
-import Container from '@mui/material/Container';
-// import AccountCircle from '@mui/icons-material/AccountCircle';
-// import Avatar from '@mui/material/Avatar';
-// import Button from '@mui/material/Button';
-// import Tooltip from '@mui/material/Tooltip';
+import {
+  Button,
+  Typography,
+  Container,
+} from '@mui/material';
+import { HeroLayout } from '../components';
 
 function Landing() {
   return (
-    <Container>
-      {/* <div>
-        <img alt='main' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX1vSFTfgLOixYh833CEhfon5UwxFdfg9Qpw&usqp=CAU' />
-      </div> */}
-      <p>
+    <HeroLayout>
+      <img
+        style={{ display: 'none' }}
+        src='https://lh5.googleusercontent.com/Lw3SVGgtzNsW5Wy48rJ-SEZwaWOgoa4QXeplKEBoVYQbI4roEQITFJOmjIURytOYyBhzYmyNAPUT56kFNKgzoBoAIsFsNXGe7hA_C_z7lw1g1GhcPrVWdhNOXzxbGMcGILi4DjE3'
+        alt='increase priority'
+      />
+      <Typography
+        color='white'
+        align='center'
+        variant='h2'
+        marked='center'
+      >
+        SECURE STORIES AND MEMORIES
+      </Typography>
+      <Typography
+        color='white'
+        align='center'
+        variant='h5'
+        sx={{ mb: 4, mt: 4 }}
+      >
         Airloom provides space to tell stories of the things that store memories
         we share with one another.
-      </p>
-    </Container>
+      </Typography>
+    </HeroLayout>
   );
 }
 
