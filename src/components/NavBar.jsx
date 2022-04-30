@@ -3,19 +3,17 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import AppBar from '@mui/material/AppBar';
-// import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  MenuItem,
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-// import Container from '@mui/material/Container';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-// import Avatar from '@mui/material/Avatar';
-// import Button from '@mui/material/Button';
-// import Tooltip from '@mui/material/Tooltip';
 import { getItems } from '../actions';
 
 function NavBar({ currentUser, usersAlbums, fetchItems }) {
@@ -49,12 +47,13 @@ function NavBar({ currentUser, usersAlbums, fetchItems }) {
           backgroundColor: '#cc5500',
         }}
       >
+        <Box sx={{ flexGrow: 1 }} />
         <Typography
           variant='h4'
           component='div'
-          sx={{ flexGrow: 1 }}
+          sx={{ flexGrow: 1, ml: 6 }}
         >
-          <Link to='/' style={{ color: 'white', textDecoration: 'none' }}>Airloom</Link>
+          <Link to='/' style={{ color: 'white', textDecoration: 'none' }}>AIRLOOM</Link>
         </Typography>
         {/* <Typography
           variant='h4'
