@@ -5,9 +5,9 @@ import {
   Container,
 } from '@mui/material';
 import {
-  HeroLayout,
   Hero,
   Values,
+  HowItWorks,
 } from '../components';
 
 function Landing() {
@@ -15,6 +15,7 @@ function Landing() {
     <>
       <Hero />
       <Values />
+      <HowItWorks />
     </>
   );
 }

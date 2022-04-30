@@ -4,6 +4,7 @@ import ItemList from './ItemList';
 import HeroLayout from './product/HeroLayout';
 import Hero from './product/Hero';
 import Values from './product/Values';
+import HowItWorks from './product/HowItWorks';
 
 export {
   NavBar,
@@ -12,4 +13,5 @@ export {
   HeroLayout,
   Hero,
   Values,
+  HowItWorks,
 };

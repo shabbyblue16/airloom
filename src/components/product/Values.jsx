@@ -18,7 +18,7 @@ function Values() {
   return (
     <Box
       component='section'
-      sx={{ display: 'flex', overflow: 'hidden' }}
+      sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'lavender' }}
     >
       <Container
         sx={{
@@ -26,8 +26,24 @@ function Values() {
           mb: 30,
           display: 'flex',
           position: 'relative',
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
+        {/* <Box
+          component='img'
+          src='/subtle-background.png'
+          alt='subtle background'
+          sx={{ pointerEvents: 'none', position: 'absolute' }}
+        /> */}
+        <Typography
+          variant='h4'
+          marked='center'
+          component='h2'
+          sx={{ mb: 14 }}
+        >
+          What it&apos;s for
+        </Typography>
         <Grid container spacing={5}>
           <Grid item xs={12} md={4}>
             <Box sx={item}>
