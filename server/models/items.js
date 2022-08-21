@@ -16,6 +16,21 @@ const findItems = (albumId, callback) => {
     });
 };
 
+const findItem = (itemId, callback) => {
+  const query = {
+    name: 'find-single-item',
+    text: 'SELECT * FROM items WHERE id = $1',
+    values: [itemId],
+  };
+  pgClient
+    .query(query)
+    .then((data) => callback(data.rows))
+    .catch((e) => {
+      console.log(e);
+      callback('item not found');
+    });
+};
+
 const createItem = (item, callback) => {
   const query = {
     name: 'create-item',
@@ -33,5 +48,6 @@ const createItem = (item, callback) => {
 
 module.exports = {
   findItems,
+  findItem,
   createItem,
 };

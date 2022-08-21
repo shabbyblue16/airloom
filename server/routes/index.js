@@ -12,6 +12,7 @@ const {
   postAlbum,
   getItems,
   postItem,
+  postPic,
 } = require('../controllers');
 
 const router = express.Router();
@@ -25,6 +26,12 @@ router
     '/items/create',
     upload.array('pictures'),
     postItem,
+  );
+router
+  .post(
+    '/pics/create',
+    upload.array('pictures'),
+    postPic,
   );
 
 module.exports = router;

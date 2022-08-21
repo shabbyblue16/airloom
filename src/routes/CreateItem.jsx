@@ -119,7 +119,7 @@ function CreateItem({ currentItems, handlePostItem }) {
               fullWidth
               sx={{ backgroundColor: '#cc5500' }}
             >
-              Upload Pictures
+              Upload Picture
             </Button>
           </InputLabel>
         </Grid>

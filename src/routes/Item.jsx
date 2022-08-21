@@ -83,6 +83,26 @@ function Item() {
               </Card>
             </Grid>
           ))}
+          <Grid item key='addapic.com' xs={12} sm={6} md={4}>
+            <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+              <CardMedia
+                component='img'
+                sx={{ pt: '56.25%' }}
+                alt='add a picture'
+              />
+              <CardContent sx={{ flexGrow: 1 }}>
+                <Typography variant='h5' component='h2' gutterBottom>
+                  Heading
+                </Typography>
+                <Typography>
+                  Add a picture
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size='small'>Add</Button>
+              </CardActions>
+            </Card>
+          </Grid>
         </Grid>
       </Container>
     </>

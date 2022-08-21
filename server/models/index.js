@@ -1,6 +1,6 @@
 const { findUser, createUser } = require('./users');
 const { findAlbums, createAlbum } = require('./albums');
-const { findItems, createItem } = require('./items');
+const { findItems, findItem, createItem } = require('./items');
 const { findPics, createPic } = require('./pics');
 
 module.exports = {
@@ -9,6 +9,7 @@ module.exports = {
   findAlbums,
   createAlbum,
   findItems,
+  findItem,
   createItem,
   findPics,
   createPic,

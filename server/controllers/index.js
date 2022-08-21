@@ -1,6 +1,7 @@
 const { getUser, postUser } = require('./users');
 const { postAlbum } = require('./albums');
 const { getItems, postItem } = require('./items');
+const { postPic } = require('./pics');
 
 module.exports = {
   getUser,
@@ -8,4 +9,5 @@ module.exports = {
   postAlbum,
   getItems,
   postItem,
+  postPic,
 };

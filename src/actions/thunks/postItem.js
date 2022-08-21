@@ -24,7 +24,6 @@ const postItem = (newItem, items) => (dispatch) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       const updatedItems = items;
       updatedItems[albumId].push(data);
       dispatch(changeItems(updatedItems));
