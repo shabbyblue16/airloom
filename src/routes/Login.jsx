@@ -17,8 +17,6 @@ import Alert from '@mui/material/Alert';
 import { getUser } from '../actions';
 
 function Login({ setUser, history }) {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
   const [error, setError] = React.useState('');
   const navigate = useNavigate();
 
