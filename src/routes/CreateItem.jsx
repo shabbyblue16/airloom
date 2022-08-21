@@ -131,7 +131,7 @@ function CreateItem({ currentItems, handlePostItem }) {
             onClick={handleSave}
             sx={{ backgroundColor: '#cc5500' }}
           >
-            Save Album
+            Save Item
           </Button>
         </Grid>
       </Grid>
